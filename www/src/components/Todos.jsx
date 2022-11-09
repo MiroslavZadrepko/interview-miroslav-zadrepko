@@ -1,13 +1,13 @@
 import React from 'react';
 import Todo from './Todo';
 
-const Todos = ({todos}) => {
+const Todos = ({ todos }) => {
 
     return (
         <div>
-            {[...todos].reverse().map((todo) =>
-                <Todo key={todo.id} todo={todo} />
-            )}
+
+           {todos.slice(0).reverse().map((todo)=>(<Todo key={todo.id} todo={todo}/>))}
+
         </div>
     )
 }

@@ -1,40 +1,31 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { v4 } from 'uuid';
 
-const InputTodo = ({ setTodos }) => {
+const InputTodo = ({addTodo}) => {
 
     const [todo, setTodo] = useState(
         {
             todoText: '',
-            id: ''
+            id: '' 
         }
-    )
+    );
 
-    const [todoText, setTodoText] = useState('');
+    const handleChange = (e) => {
+        setTodo({ ...todo, [e.target.name]: e.target.value, id:v4() });
+      };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        setTodo({
-            todoText: todoText,
-            id: v4()
-        })
-        setTodoText('')
+        addTodo(todo)
+        setTodo({todoText: "", id: "" })
     }
-
-    useEffect(() => {
-        setTodos((prev) => {
-            return [...prev, todo]
-        })
-    }, [todo])
-
-
 
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <input type='text' name='todoText' value={todoText} onChange={(e) => setTodoText(e.target.value)} required />
+                <input type='text' name='todoText' value={todo.todoText} onChange={handleChange} required />
+                {}
                 <button type='submit'>submit</button>
             </form>
         </div>
