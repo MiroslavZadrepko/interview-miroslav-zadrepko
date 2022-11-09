@@ -1,1 +1,0 @@
-# interview-miroslav-zadrepko
