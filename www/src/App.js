@@ -5,18 +5,16 @@ import { useState } from "react";
 
 const App = () => {
 
-  const [todos, setTodos] = useState([])
+  const [todos, setTodos] = useState([]);
 
   const addTodo = (todo) => {
     setTodos([...todos, todo]);
   };
 
-  console.log(todos)
-
   return (
     <>
       <InputTodo addTodo={addTodo} />
-      <Todos todos={todos}/>    
+      <Todos todos={todos} />
     </>
   );
 }
