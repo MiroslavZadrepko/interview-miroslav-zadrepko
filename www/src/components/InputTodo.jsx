@@ -22,13 +22,17 @@ const InputTodo = ({ addTodo }) => {
     };
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <input type='text' name='todoText' value={todo.todoText} onChange={handleChange} required />
-                { }
-                <button type='submit'>submit</button>
+        <div className="container">
+            <form onSubmit={handleSubmit}  >
+                <div className="input-field row">
+                    <input className="center-align" type='text' name='todoText' value={todo.todoText} onChange={handleChange} required />
+                </div>
+                <div className="row">
+                    <button className="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+                </div>
             </form>
         </div>
+
     )
 }
 
