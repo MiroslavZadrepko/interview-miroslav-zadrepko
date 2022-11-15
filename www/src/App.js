@@ -6,12 +6,12 @@ const App = () => {
 
   return (
     <div className="center-align">
-      <h3>Enter todo <br></br>
-      <i className="medium material-icons">arrow_downward</i>
-      </h3>
+
+      <h3>Enter todo <br></br><i className="medium material-icons">arrow_downward</i></h3>
    
       <InputTodo />
       <Todos />
+      
     </div>
   );
 }

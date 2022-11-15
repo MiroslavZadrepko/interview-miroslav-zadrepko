@@ -7,8 +7,14 @@ const createTodo = async (todoData) => {
     return response.data
 }
 
+const getTodos = async () => {
+    const respons = await axios.get(API_URL);
+    return respons.data
+}
+
 const todoService = {
-    createTodo
+    createTodo,
+    getTodos
 };
 
 export default todoService;
