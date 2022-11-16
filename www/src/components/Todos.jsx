@@ -9,19 +9,23 @@ const Todos = () => {
     const { todos, isLoading, isError, message } = useSelector((state) => state.todos);
 
     useEffect(() => {
+
         if (isError) {
             console.log(message)
         };
-        dispatch(getTodos);
+
+        dispatch(getTodos());
+
         return () => {
             dispatch(reset())
         };
+
     }, [isError, message, dispatch]);
 
     if (isLoading) {
         return (
-            <div class="progress">
-                <div class="indeterminate"></div>
+            <div className='progress'>
+                <div className='indeterminate'></div>
             </div>)
     };
 
@@ -30,9 +34,9 @@ const Todos = () => {
             <section className='content'>
                 {todos.length > 0 ? (
                     <>
-                        {todos.slice(0).reverse().map((todo) => <Todo key={todo._id} todo={todo}/>)}
+                        {todos.slice(0).reverse().map((todo) => <Todo key={todo._id} todo={todo} />)}
                     </>
-                ) : (<h4>There is no todos yet</h4>)}
+                ) : (<h4>There are no todos at the moment</h4>)}
             </section>
         </div >
     )

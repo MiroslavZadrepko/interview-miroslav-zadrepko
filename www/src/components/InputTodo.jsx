@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createTodo } from '../features/todoSlice';
 
-
 const InputTodo = () => {
 
     const [text, setText] = useState('');

@@ -23,17 +23,31 @@ export const createTodo = createAsyncThunk('todos/create', async (todoData, thun
     }
 })
 
-export const getTodos = createAsyncThunk('todos/getAll', async(_,thunkAPI) => {
+export const getTodos = createAsyncThunk('todos/getAll', async (_, thunkAPI) => {
     try {
         return await todoService.getTodos()
     } catch (error) {
         const message =
-        (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-        error.message ||
-        error.toString()
-    return thunkAPI.rejectWithValue(message)
+            (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+            error.message ||
+            error.toString()
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+
+export const deleteTodo = createAsyncThunk('todos/delete', async (id, thunkAPI) => {
+    try {
+        return await todoService.deleteTodo(id)
+    } catch (error) {
+        const message =
+            (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+            error.message ||
+            error.toString()
+        return thunkAPI.rejectWithValue(message)
     }
 })
 
@@ -56,7 +70,7 @@ export const todoSlice = createSlice({
             .addCase(createTodo.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
-                state.message = action.payload 
+                state.message = action.payload
             })
             .addCase(getTodos.pending, (state) => {
                 state.isLoading = true
@@ -69,7 +83,20 @@ export const todoSlice = createSlice({
             .addCase(getTodos.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
-                state.message = action.payload 
+                state.message = action.payload
+            })
+            .addCase(deleteTodo.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(deleteTodo.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.todos = state.todos.filter((todo) => todo._id !== action.payload.id)
+            })
+            .addCase(deleteTodo.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
             })
     }
 })

@@ -12,9 +12,15 @@ const getTodos = async () => {
     return respons.data
 }
 
+const deleteTodo = async (id) => {
+    const respons = await axios.delete(API_URL + id);
+    return respons.data
+}
+
 const todoService = {
     createTodo,
-    getTodos
+    getTodos,
+    deleteTodo
 };
 
 export default todoService;
