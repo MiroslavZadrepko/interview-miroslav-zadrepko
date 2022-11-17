@@ -51,6 +51,20 @@ export const deleteTodo = createAsyncThunk('todos/delete', async (id, thunkAPI) 
     }
 })
 
+export const updateTodo = createAsyncThunk('todos/update', async ({id, text}, thunkAPI) => {
+    try {
+        return await todoService.updateTodo(id, text)
+    } catch (error) {
+        const message =
+        (error.response &&
+            error.response.data &&
+            error.response.data.message) ||
+        error.message ||
+        error.toString()
+    return thunkAPI.rejectWithValue(message)
+    }
+})
+
 export const todoSlice = createSlice({
     name: 'todo',
     initialState,
@@ -94,6 +108,30 @@ export const todoSlice = createSlice({
                 state.todos = state.todos.filter((todo) => todo._id !== action.payload.id)
             })
             .addCase(deleteTodo.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+            })
+            .addCase(updateTodo.pending, (state) => {
+                state.isLoading = true
+                
+            })
+            .addCase(updateTodo.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.todos = state.todos.map((item, index) => {
+                    if(item._id === action.payload._id) {
+                        return {
+                            ...item,
+                            text: action.payload.text
+                        }
+                    }
+                    return item
+                })
+                
+                
+            })
+            .addCase(updateTodo.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload

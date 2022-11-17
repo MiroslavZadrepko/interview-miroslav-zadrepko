@@ -17,10 +17,15 @@ const deleteTodo = async (id) => {
     return respons.data
 }
 
+const updateTodo = async (id, text) => {
+    const respons = await axios.put(API_URL + id, {text: text});
+    return respons.data
+}
 const todoService = {
     createTodo,
     getTodos,
-    deleteTodo
-};
+    deleteTodo,
+    updateTodo
+}; 
 
 export default todoService;

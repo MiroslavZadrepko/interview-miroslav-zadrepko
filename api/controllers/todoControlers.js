@@ -1,7 +1,8 @@
 const asyncHandler = require('express-async-handler');
 const Todo = require('../models/todoModels.js')
 
-//GET
+//GET 
+//get all todos
 const getTodos = asyncHandler(async (req, res) => {
 
     const todos = await Todo.find();
@@ -9,7 +10,8 @@ const getTodos = asyncHandler(async (req, res) => {
     res.status(200).json(todos);
 });
 
-//POST
+//POST 
+//create new todo
 const setTodo = asyncHandler(async (req, res) => {
 
     if (!req.body.text) {
@@ -25,6 +27,7 @@ const setTodo = asyncHandler(async (req, res) => {
 });
 
 //PUT
+// update txt of todo
 const updateTodo = asyncHandler(async (req, res) => {
 
     const todo = await Todo.findById(req.params.id);
@@ -40,6 +43,7 @@ const updateTodo = asyncHandler(async (req, res) => {
 });
 
 //DELETE
+// todo by ID
 const deleteTodo = asyncHandler(async (req, res) => {
 
     const todo = await Todo.findById(req.params.id);
