@@ -4,15 +4,15 @@ import { useDispatch } from 'react-redux';
 import { updateTodo } from '../features/todoSlice';
 
 function EditTodo({ todo }) {
+
     const dispatch = useDispatch();
     const [text, setText] = useState(todo.text)
+
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(text)
         dispatch(updateTodo({ id: todo._id, text: text }))
     }
-
-
 
     return (
         <div className="container">

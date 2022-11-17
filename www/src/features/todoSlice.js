@@ -113,8 +113,7 @@ export const todoSlice = createSlice({
                 state.message = action.payload
             })
             .addCase(updateTodo.pending, (state) => {
-                state.isLoading = true
-                
+                state.isLoading = true                
             })
             .addCase(updateTodo.fulfilled, (state, action) => {
                 state.isLoading = false
@@ -127,9 +126,7 @@ export const todoSlice = createSlice({
                         }
                     }
                     return item
-                })
-                
-                
+                })       
             })
             .addCase(updateTodo.rejected, (state, action) => {
                 state.isLoading = false

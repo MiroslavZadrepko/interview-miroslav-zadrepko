@@ -10,7 +10,6 @@ const Todo = ({ todo }) => {
     const [edit, setEdit] = useState(false);
 
     const callEdit = () => {
-        
         setEdit(!edit);
     }
 
@@ -19,7 +18,7 @@ const Todo = ({ todo }) => {
 
             <div> {new Date(todo.date).toLocaleDateString('sr-SP')}</div>
             <div>
-                <p>{todo.text}</p>
+                <h5>{todo.text}</h5>
                 <button className="btn waves-effect waves-light" onClick={()=> callEdit()} >Edit</button>
                 <button onClick={() => dispatch(deleteTodo(todo._id))} className="btn waves-effect waves-light">Delete</button>
                 {todo.done ?
