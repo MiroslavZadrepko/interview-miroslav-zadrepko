@@ -25,9 +25,9 @@ const Todo = ({ todo }) => {
     }
     
     return (
-        <div className='collection'>
+        <div className='collection hoverable green lighten-2 '>
 
-            <div> {new Date(todo.date).toLocaleDateString('sr-SP')}</div>
+            <div> <h6>{new Date(todo.date).toLocaleDateString('sr-SP')}</h6> </div>
             <div>
                 <h5 style={done ? {textDecoration: "line-through"} : {textDecoration: "none"}}>{todo.text}</h5>
                 <button

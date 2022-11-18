@@ -18,7 +18,7 @@ function EditTodo({ todo }) {
         <div className="container">
             <form onSubmit={handleSubmit}>
                 <div className="input-field row">
-                    <input className="center-align col m6 offset-m3" type="text" name='text' id='text' value={text} onChange={(e) => setText(e.target.value)} />
+                    <input className="center-align col m8 offset-m2" type="text" name='text' id='text' value={text} onChange={(e) => setText(e.target.value)} />
                 </div>
 
                 <div className="row">

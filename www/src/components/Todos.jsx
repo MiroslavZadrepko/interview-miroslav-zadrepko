@@ -31,7 +31,7 @@ const Todos = () => {
 
     return (
         <div>
-            <section className='content'>
+            <section className='container'>
                 {todos.length > 0 ? (
                     <>
                         {todos.slice(0).reverse().map((todo) => <Todo key={todo._id} todo={todo} />)}

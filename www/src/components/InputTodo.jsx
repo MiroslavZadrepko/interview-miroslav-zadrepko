@@ -11,15 +11,16 @@ const InputTodo = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(createTodo({text}));
+        dispatch(createTodo({ text }));
         setText('')
     };
+
 
     return (
         <div className="container">
             <form onSubmit={handleSubmit}  >
                 <div className="input-field row">
-                    <input className="center-align col m6 offset-m3" type='text' id='text' name='todoText' value={text} onChange={(e) => setText(e.target.value)} required />
+                    <input className="col m8 offset-m2" type='text' inputId='todotext' name='todoText' value={text} onChange={(e) => setText(e.target.value)} required />
                 </div>
                 <div className="row">
                     <button className="btn waves-effect waves-light" type="submit">Submit</button>

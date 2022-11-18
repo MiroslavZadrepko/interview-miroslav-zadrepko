@@ -5,7 +5,7 @@ import React from "react";
 const App = () => {
 
   return (
-    <div className="center-align">
+    <div className="container center-align">
       <h3>Enter todo <br></br><i className="medium material-icons">arrow_downward</i></h3>
       <InputTodo />
       <Todos />
