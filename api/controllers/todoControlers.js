@@ -41,7 +41,18 @@ const updateTodo = asyncHandler(async (req, res) => {
 
     res.status(200).json(updatedTodo);
 });
+//PUT
+//Update done
+const updateDone = asyncHandler(async(req,res) => {
+    const todo = await Todo.findById(req.params.id)
+    if (!todo) {
+        res.status(400);
+        throw new Error('Todo not found');
+    };
+    const updatedTodo = await Todo.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    res.status(200).json(updatedTodo)
 
+})
 //DELETE
 // todo by ID
 const deleteTodo = asyncHandler(async (req, res) => {
@@ -62,5 +73,6 @@ module.exports = {
     getTodos,
     setTodo,
     updateTodo,
+    updateDone,
     deleteTodo
 };

@@ -51,17 +51,31 @@ export const deleteTodo = createAsyncThunk('todos/delete', async (id, thunkAPI) 
     }
 })
 
-export const updateTodo = createAsyncThunk('todos/update', async ({id, text}, thunkAPI) => {
+export const updateTodo = createAsyncThunk('todos/update', async ({ id, text }, thunkAPI) => {
     try {
         return await todoService.updateTodo(id, text)
     } catch (error) {
         const message =
-        (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-        error.message ||
-        error.toString()
-    return thunkAPI.rejectWithValue(message)
+            (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+            error.message ||
+            error.toString()
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+
+export const updateDone = createAsyncThunk('dodos/updatedone', async ({ id, done }, thunkAPI) => {
+    try {
+        return await todoService.updateDone(id, done)
+    } catch (error) {
+        const message =
+            (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+            error.message ||
+            error.toString()
+        return thunkAPI.rejectWithValue(message)
     }
 })
 
@@ -113,22 +127,52 @@ export const todoSlice = createSlice({
                 state.message = action.payload
             })
             .addCase(updateTodo.pending, (state) => {
-                state.isLoading = true                
+                state.isLoading = true
             })
             .addCase(updateTodo.fulfilled, (state, action) => {
                 state.isLoading = false
                 state.isSuccess = true
                 state.todos = state.todos.map((item, index) => {
-                    if(item._id === action.payload._id) {
+                    if (item._id === action.payload._id) {
                         return {
                             ...item,
-                            text: action.payload.text
+                            text: action.payload.text,
+                            done: false
                         }
                     }
                     return item
-                })       
+                })
             })
             .addCase(updateTodo.rejected, (state, action) => {
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+            })
+            .addCase(updateDone.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(updateDone.fulfilled, (state, action) => {
+                state.isLoading = false
+                state.isSuccess = true
+                state.todos = state.todos.map((item) => {
+                    if (item._id === action.payload._id) {
+                        if (item.done) {
+                            return {
+                                ...item,
+                                done: false
+                            }
+                        } else {
+                            return {
+                                ...item,
+                                done: true
+                            }
+                        }
+
+                    }
+                    return item
+                })
+            })
+            .addCase(updateDone.rejected, (state, action) => {
                 state.isLoading = false
                 state.isError = true
                 state.message = action.payload

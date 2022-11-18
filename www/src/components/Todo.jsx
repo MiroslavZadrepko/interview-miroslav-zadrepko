@@ -1,31 +1,51 @@
 import React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { deleteTodo } from '../features/todoSlice';
+import { deleteTodo, updateDone } from '../features/todoSlice';
 import EditTodo from './EditTodo'
 
 const Todo = ({ todo }) => {
 
     const dispatch = useDispatch();
     const [edit, setEdit] = useState(false);
+    const [done, setDone] = useState(todo.done);
 
     const callEdit = () => {
         setEdit(!edit);
+        if (done) {
+            console.log(done);
+            setDone(!done)
+        } 
     }
 
+    const handleClick = () => {
+        setDone(!done); 
+        dispatch(updateDone({id: todo._id}));
+        console.log(done); 
+    }
+    
     return (
         <div className='collection'>
 
             <div> {new Date(todo.date).toLocaleDateString('sr-SP')}</div>
             <div>
-                <h5>{todo.text}</h5>
-                <button className="btn waves-effect waves-light" onClick={()=> callEdit()} >Edit</button>
-                <button onClick={() => dispatch(deleteTodo(todo._id))} className="btn waves-effect waves-light">Delete</button>
-                {todo.done ?
-                    <button className="btn waves-effect waves-light"><i className="large material-icons">done</i></button>
-                    :
-                    <button className="btn waves-effect waves-light">Done</button>}
-                    {edit ? <EditTodo todo={todo}/> : null}
+                <h5 style={done ? {textDecoration: "line-through"} : {textDecoration: "none"}}>{todo.text}</h5>
+                <button
+                    className="btn waves-effect waves-light"
+                    onClick={() => callEdit()} >
+                    <i className="large material-icons">edit</i>
+                </button>
+                <button
+                    className="btn waves-effect waves-light"
+                    onClick={() => dispatch(deleteTodo(todo._id))} >
+                    <i className="large material-icons">delete</i>
+                </button>
+                <button
+                    className="btn waves-effect waves-light"
+                    onClick={() => handleClick()} >
+                    <i className="large material-icons">done</i>
+                </button>
+                {edit ? <EditTodo todo={todo}/> : null}
             </div>
 
         </div>

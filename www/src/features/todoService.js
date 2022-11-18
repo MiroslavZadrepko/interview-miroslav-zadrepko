@@ -21,11 +21,17 @@ const updateTodo = async (id, text) => {
     const respons = await axios.put(API_URL + id, {text: text});
     return respons.data
 }
+
+const updateDone = async (id, done) => {
+    const respons = await axios.put(API_URL + id, {done: done})
+    return respons.data
+}
 const todoService = {
     createTodo,
     getTodos,
     deleteTodo,
-    updateTodo
+    updateTodo,
+    updateDone
 }; 
 
 export default todoService;

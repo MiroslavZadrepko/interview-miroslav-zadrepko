@@ -6,7 +6,7 @@ import { updateTodo } from '../features/todoSlice';
 function EditTodo({ todo }) {
 
     const dispatch = useDispatch();
-    const [text, setText] = useState(todo.text)
+    const [text, setText] = useState('')
 
     const handleSubmit = (e) => {
         e.preventDefault();
