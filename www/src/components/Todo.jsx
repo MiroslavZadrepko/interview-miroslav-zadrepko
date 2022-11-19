@@ -13,7 +13,6 @@ const Todo = ({ todo }) => {
     const callEdit = () => {
         setEdit(!edit);
         if (done) {
-            console.log(done);
             setDone(!done)
         } 
     }
@@ -21,7 +20,6 @@ const Todo = ({ todo }) => {
     const handleClick = () => {
         setDone(!done); 
         dispatch(updateDone({id: todo._id}));
-        console.log(done); 
     }
     
     return (

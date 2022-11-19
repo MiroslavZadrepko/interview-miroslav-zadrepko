@@ -20,7 +20,7 @@ const InputTodo = () => {
         <div className="container">
             <form onSubmit={handleSubmit}  >
                 <div className="input-field row">
-                    <input className="col m8 offset-m2" type='text' inputId='todotext' name='todoText' value={text} onChange={(e) => setText(e.target.value)} required />
+                    <input className="col m8 offset-m2" type='text' id='todotext' name='todoText' value={text} onChange={(e) => setText(e.target.value)} required />
                 </div>
                 <div className="row">
                     <button className="btn waves-effect waves-light" type="submit">Submit</button>

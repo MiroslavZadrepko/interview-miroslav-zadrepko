@@ -10,7 +10,6 @@ function EditTodo({ todo }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(text)
         dispatch(updateTodo({ id: todo._id, text: text }))
     }
 
