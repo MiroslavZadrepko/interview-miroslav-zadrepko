@@ -1,5 +1,6 @@
-FROM node:latest
+FROM node:alpine
 WORKDIR /www
-ADD . .
+ADD package*.json ./
 RUN npm install
-CMD npm start
+ADD . .
+CMD ["npm", "start"]

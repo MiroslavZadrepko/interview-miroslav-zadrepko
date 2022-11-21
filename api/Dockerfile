@@ -1,5 +1,6 @@
-FROM node:latest
+FROM node:alpine
 WORKDIR /api
-ADD . .
+ADD package*.json ./
 RUN npm install
-CMD npm run dev
+ADD . .
+CMD ["npm", "start"]
