@@ -2,5 +2,6 @@ FROM node:alpine
 WORKDIR /api
 ADD package*.json ./
 RUN npm install
-ADD . .
+EXPOSE 8080
+ADD . /api
 CMD ["npm", "start"]
