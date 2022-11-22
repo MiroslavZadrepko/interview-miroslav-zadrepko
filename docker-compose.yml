@@ -2,14 +2,6 @@ version: '3.8'
 
 services:
 
-  mongo:
-    image: mongo
-    restart: always
-    ports:
-      - 27017:27017
-    volumes:
-      - data: /data/db
-
   api:
     build: ./api
     ports:
@@ -19,6 +11,19 @@ services:
 
   www:
     build: ./www
+    image: www
+    stdin_open: true
     ports:
       - 8080:8080
-    depends_on: api  
+
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb:/data/db
+
+volumes:
+  mongodb:
+
