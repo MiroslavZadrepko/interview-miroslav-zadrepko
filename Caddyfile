@@ -1,0 +1,4 @@
+127.0.0.1 {
+    reverse_proxy www:8080
+        header_down Strict-Transport-Security max-age=31536000;
+}

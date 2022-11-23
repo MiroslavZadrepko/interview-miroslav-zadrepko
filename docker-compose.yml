@@ -15,6 +15,16 @@ services:
     ports:
       - 8080:8080
 
+  caddy:
+    image: caddy/caddy:2.6-alpine
+    container_name: caddy-service
+    ports: 
+      - 80:80
+      - 443:443
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
+
   mongo:
     image: mongo
     restart: always
@@ -25,4 +35,8 @@ services:
 
 volumes:
   mongodb:
+  caddy_data:
+  caddy_config:
+
+
 
