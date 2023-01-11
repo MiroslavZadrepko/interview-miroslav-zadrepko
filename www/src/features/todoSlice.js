@@ -65,7 +65,7 @@ export const updateTodo = createAsyncThunk('todos/update', async ({ id, text }, 
     }
 })
 
-export const updateDone = createAsyncThunk('dodos/updatedone', async ({ id, done }, thunkAPI) => {
+export const updateDone = createAsyncThunk('todos/updatedone', async ({ id, done }, thunkAPI) => {
     try {
         return await todoService.updateDone(id, done)
     } catch (error) {

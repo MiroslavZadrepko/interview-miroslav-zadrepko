@@ -11,11 +11,11 @@ conectToDB();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
 app.use(cors({
-    origin: 'http://127.0.0.1:8080'
+    origin: 'http://localhost:8080'
 }))
 app.use('/api/todos', require('./routes/todoRoutes'))
 app.use(errorHandler)
 
 app.listen(port, () => {
-    console.log(`live on port:${port}`);
+    console.log(`live on port: ${port}`);
 })
